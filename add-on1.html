@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Options</title>
+  <style>
+    .option {
+  display: none;
+}
+  </style>
+</head>
+<body>
+  <h1>Welcome to the User Options Page</h1>
+  
+  <h1>Additional Options</h1>
+  <p>Select an option:</p>
+  <select onchange="showContent(this.value)">
+    <option value="">Select an option</option>
+    <option value="option1">BMI Calculator</option>
+    <option value="option2">Hydration Tracker</option>
+  </select>
+  
+  <div id="option1" class="option">
+    <h2>BMI Calculator</h2>
+    <div class="body1">
+    <div class="container1">
+        <h1>BMR Calculator</h1>
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter your weight">
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" placeholder="Enter your height">
+        <label for="age">Age:</label>
+        <input type="number" id="age" placeholder="Enter your age">
+        <button onclick="calculateBMR()">Calculate</button>
+        <div class="result" id="result"></div>
+      </div>
+    
+      <script>
+        function calculateBMR() {
+          var weight = document.getElementById("weight").value;
+          var height = document.getElementById("height").value;
+          var age = document.getElementById("age").value;
+    
+          var bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    
+          document.getElementById("result").innerHTML = "Your BMR is: " + bmr.toFixed(2);
+        }
+      </script>
+  </div>
+</div>
+
+    <div id="option2" class="option">
+        <h2>Hydration Tracker</h2>
+        <div class="body2">
+        <form id="waterIntakeForm">
+            <div class="water"></div>
+            <label for="dailyIntake">Enter your daily water intake (in liters):</label>
+            <input type="text" id="dailyIntake" name="dailyIntake" required>
+            <button type="button" onclick="trackWaterIntake()">Track Water Intake</button>
+        </form>
+    </div>
+        
+        <script>
+            function trackWaterIntake() {
+                try {
+                    // Get water intake from the form
+                    var dailyIntake = parseFloat(document.getElementById("dailyIntake").value);
+        
+                    // Check if the intake is less than 3.7 liters
+                    if (dailyIntake < 3.7) {
+                        alert("Your body needs more water. Keep hydrating!");
+                    } else {
+                        alert("Congratulations! Your body has sufficient water intake.");
+                    }
+                } catch (error) {
+                    alert("Invalid input. Please enter a valid number for water intake.");
+                }
+            }
+        </script>
+    </div>
+</div>
+    <div id="option1" class="option">
+        <h2>BMI Calculator</h2>
+        <p>hi</p>
+    </div>
+  
+    <script>
+    function showContent(option) {
+    var options = document.getElementsByClassName("option");
+    for (var i = 0; i < options.length; i++) {
+        options[i].style.display = "none";
+    }
+    var content = document.getElementById(option);
+    content.style.display = "block";
+    }
+
+
+  </script>
+</body>
+</html>
